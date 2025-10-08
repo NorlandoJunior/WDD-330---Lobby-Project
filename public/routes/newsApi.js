@@ -3,7 +3,7 @@ async function loadNews() {
     const response = await fetch("/news");
     const data = await response.json();
 
-    const main = document.querySelector("main");
+    const main = document.getElementById("news-container");
     main.innerHTML = "<h2>Top Headlines</h2>";
 
     if (data.articles) {
