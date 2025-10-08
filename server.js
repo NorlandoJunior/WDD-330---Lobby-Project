@@ -1,6 +1,9 @@
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,11 +11,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.static("public"));
 
-//News API route
+// --- News API route ---
 app.get("/news", async (req, res) => {
   try {
     const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&apiKey=f5d8d3ee6ff84a7a8f8924fe6abeeec6`
+      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_KEY}`
     );
     const data = await response.json();
     res.json(data);
@@ -22,7 +25,7 @@ app.get("/news", async (req, res) => {
   }
 });
 
-//Weather API route (server-side proxy)
+// --- Weather API route (3-hour forecast) ---
 app.get("/weather", async (req, res) => {
   const { lat, lon } = req.query;
 
@@ -31,14 +34,29 @@ app.get("/weather", async (req, res) => {
   }
 
   try {
-    const OPENWEATHER_KEY = "4304c2d475f6f13a96df198d680d1b56";
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=${OPENWEATHER_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=${process.env.OPENWEATHER_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
     res.json(data);
   } catch (err) {
     console.error("Error fetching weather:", err);
     res.status(500).json({ error: "Error fetching weather" });
+  }
+});
+
+// --- Calendarific API route ---
+app.get("/calendar", async (req, res) => {
+  try {
+    const COUNTRY = "BR";
+    const YEAR = new Date().getFullYear();
+    const url = `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_KEY}&country=${COUNTRY}&year=${YEAR}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    res.json(data.response.holidays);
+  } catch (err) {
+    console.error("Error fetching calendar:", err);
+    res.status(500).json({ error: "Error fetching calendar" });
   }
 });
 

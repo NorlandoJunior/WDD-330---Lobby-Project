@@ -9,11 +9,12 @@ function showError(msg = "Unable to load weather.") {
 }
 
 function renderWeather(data) {
-  const name = data.name || "Location";
-  const desc = (data.weather && data.weather[0] && data.weather[0].description) || "";
-  const temp = data.main ? Math.round(data.main.temp) : "--";
-  const feels = data.main ? Math.round(data.main.feels_like) : "--";
-  const iconCode = (data.weather && data.weather[0] && data.weather[0].icon) || null;
+  const forecast = data.list[0];
+  const name = data.city.name || "Location";
+  const desc = forecast.weather[0].description || "";
+  const temp = Math.round(forecast.main.temp);
+  const feels = Math.round(forecast.main.feels_like);
+  const iconCode = forecast.weather[0].icon;
 
   const iconImg = iconCode
     ? `<img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${desc}" />`
@@ -33,11 +34,9 @@ function renderWeather(data) {
   `;
 }
 
-// fetch weather from your server endpoint
 async function fetchWeatherByCoords(lat, lon) {
   try {
-    const url = `/weather?lat=${lat}&lon=${lon}`; // server-side endpoint
-    const res = await fetch(url);
+    const res = await fetch(`/weather?lat=${lat}&lon=${lon}`);
     const data = await res.json();
 
     if (!res.ok) throw new Error(data.message || "Weather API error");
@@ -48,7 +47,6 @@ async function fetchWeatherByCoords(lat, lon) {
   }
 }
 
-// fallback using IP geolocation
 async function getCoordsFromIP() {
   try {
     const res = await fetch("https://ipapi.co/json/");
@@ -67,33 +65,23 @@ async function loadWeatherAutomatic() {
   showLoading();
 
   if ("geolocation" in navigator) {
-    const options = { enableHighAccuracy: true, timeout: 10000, maximumAge: 600000 };
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        await fetchWeatherByCoords(lat, lon);
+        await fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
       },
       async (err) => {
         console.warn("Geolocation denied or failed:", err);
         const ipCoords = await getCoordsFromIP();
-        if (ipCoords) {
-          await fetchWeatherByCoords(ipCoords.lat, ipCoords.lon);
-        } else {
-          showError("Cannot obtain your location for weather.");
-        }
+        if (ipCoords) await fetchWeatherByCoords(ipCoords.lat, ipCoords.lon);
+        else showError("Cannot obtain your location for weather.");
       },
-      options
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 600000 }
     );
   } else {
     const ipCoords = await getCoordsFromIP();
-    if (ipCoords) {
-      await fetchWeatherByCoords(ipCoords.lat, ipCoords.lon);
-    } else {
-      showError("Browser does not support geolocation.");
-    }
+    if (ipCoords) await fetchWeatherByCoords(ipCoords.lat, ipCoords.lon);
+    else showError("Browser does not support geolocation.");
   }
 }
 
-// initialize automatically
 loadWeatherAutomatic();

@@ -11,13 +11,11 @@ async function loadNews() {
         const div = document.createElement("div");
         div.classList.add("news-card");
 
-        // Create image
         const img = document.createElement("img");
         img.src = article.urlToImage || 'images/placeholder.png';
         img.alt = article.title || "News Image";
         div.appendChild(img);
 
-        // Add title ans description
         const title = document.createElement("h3");
         title.textContent = article.title;
         div.appendChild(title);
@@ -26,7 +24,6 @@ async function loadNews() {
         desc.textContent = article.description || "";
         div.appendChild(desc);
 
-        // link to full article
         const link = document.createElement("a");
         link.href = article.url;
         link.target = "_blank";
