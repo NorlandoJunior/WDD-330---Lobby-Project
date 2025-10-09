@@ -9,7 +9,7 @@ async function loadHolidays() {
     const holidays = await response.json();
 
     // Clean container and add title
-    calendarContainer.innerHTML = "<h2>Feriados</h2>";
+    calendarContainer.innerHTML = "<h2>Holidays</h2>";
 
     if (!holidays || holidays.length === 0) {
       calendarContainer.innerHTML += "<p>Nenhum feriado encontrado.</p>";
