@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page Lobby</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <header>
+        <div>Logo</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Weather</a></li>
+                <li><a href="#">Placeholder</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Weathear -->
+        <div id="weather-container"></div>
+
+        <section id="calendar-section">
+            <h2>Calendar</h2>
+            <div id="calendar-container">
+                <!-- Holidays/datas Apis will incert -->
+            </div>
+        </section>
+
+        <!-- Google search bar -->
+        <div class="gcse-search"></div>
+
+        <!-- News-->
+        <div id="news-container"></div>
+    </main>
+
+    <footer>
+        <p>footer</p>
+    </footer>
+
+    <script src="routes/newsApi.js"></script>
+    <script async src="https://cse.google.com/cse.js?cx=83ff675818bed4c9e"></script>
+    <script src="routes/weatherApi.js"></script>
+    <script src="routes/calendarApi.js"></script>
+
+</body>
+
+</html>
