@@ -1,18 +1,19 @@
-async function loadNews() {
+async function loadNews(topic = "all") {
   try {
-    const response = await fetch("/news");
+    const endpoint = topic === "all" ? "/news" : `/news?topic=${topic}`;
+    const response = await fetch(endpoint);
     const data = await response.json();
 
     const main = document.getElementById("news-container");
-    main.innerHTML = "<h2>Top Headlines</h2>";
+    main.innerHTML = "";
 
-    if (data.articles) {
+    if (data.articles && data.articles.length > 0) {
       data.articles.forEach(article => {
         const div = document.createElement("div");
         div.classList.add("news-card");
 
         const img = document.createElement("img");
-        img.src = article.urlToImage || 'images/placeholder.png';
+        img.src = article.urlToImage || "images/placeholder.png";
         img.alt = article.title || "News Image";
         div.appendChild(img);
 
@@ -33,7 +34,7 @@ async function loadNews() {
         main.appendChild(div);
       });
     } else {
-      main.innerHTML += "<p>No news found.</p>";
+      main.innerHTML = "<p>No news found.</p>";
     }
   } catch (err) {
     console.error(err);
@@ -41,4 +42,19 @@ async function loadNews() {
   }
 }
 
+// Inicialize with all news
 loadNews();
+
+// Ad event listeners to filter buttons
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const topic = e.target.getAttribute("data-topic");
+
+    // Remove active class from all buttons and add to the clicked one
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+
+    // Reload news based on the selected topic
+    loadNews(topic);
+  });
+});
