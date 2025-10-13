@@ -12,7 +12,13 @@
 <body>
     <header>
         <div>Logo</div>
-        <nav>
+
+        <!--hamburguer button -->
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+            ☰
+        </button>
+
+        <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">News</a></li>
@@ -48,6 +54,14 @@
     <script async src="https://cse.google.com/cse.js?cx=83ff675818bed4c9e"></script>
     <script src="routes/weatherApi.js"></script>
     <script src="routes/calendarApi.js"></script>
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const navMenu = document.getElementById("nav-menu");
+
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+    </script>
 
 </body>
 
