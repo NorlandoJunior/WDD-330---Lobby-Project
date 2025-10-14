@@ -11,13 +11,22 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.static("public"));
 
-// --- News API route ---
+// --- News API route with category filter ---
 app.get("/news", async (req, res) => {
   try {
-    const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_KEY}`
-    );
+    const topic = req.query.topic || "all"; // take ?topic= do front
+    const baseUrl = "https://newsapi.org/v2/top-headlines";
+    const country = "us"; // Switch the country code as needed
+
+    // if topic is 'all', do not add category filter
+    const url =
+      topic === "all"
+        ? `${baseUrl}?country=${country}&apiKey=${process.env.NEWS_KEY}`
+        : `${baseUrl}?country=${country}&category=${topic}&apiKey=${process.env.NEWS_KEY}`;
+
+    const response = await fetch(url);
     const data = await response.json();
+
     res.json(data);
   } catch (error) {
     console.error("Error fetching news:", error);
@@ -25,7 +34,7 @@ app.get("/news", async (req, res) => {
   }
 });
 
-// --- Weather API route (3-hour forecast) ---
+// Weather API route (3-hour forecast)
 app.get("/weather", async (req, res) => {
   const { lat, lon } = req.query;
 
@@ -43,6 +52,7 @@ app.get("/weather", async (req, res) => {
     res.status(500).json({ error: "Error fetching weather" });
   }
 });
+
 
 // --- Calendarific API route ---
 app.get("/calendar", async (req, res) => {

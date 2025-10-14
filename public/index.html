@@ -5,38 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page Lobby</title>
+    <link rel="stylesheet" href="styles/styles-mobile.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <!-- Inter for text-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Oswald fot heads -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div>Logo</div>
-        <nav>
+        <div>Welcome to Lobby</div>
+
+        <!--hamburguer button -->
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+            ☰
+        </button>
+
+        <nav id="nav-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Weather</a></li>
-                <li><a href="#">Placeholder</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="weather.html">Weather</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- Weathear -->
-        <div id="weather-container"></div>
+        <div id="top-container">
+            <!-- Weather -->
+            <div id="weather-container"></div>
 
-        <section id="calendar-section">
-            <h2>Calendar</h2>
-            <div id="calendar-container">
-                <!-- Holidays/datas Apis will incert -->
-            </div>
-        </section>
+            <!-- Calendar -->
+            <section id="calendar-section">
+                <h2>Calendar</h2>
+                <div id="calendar-container"></div>
+            </section>
+        </div>
 
         <!-- Google search bar -->
         <div class="gcse-search"></div>
 
-        <!-- News-->
-        <div id="news-container"></div>
+        <!--News-->
+        <section id="news-section" class="container">
+            <div id="news-container"></div> <!-- Main news container -->
+            <div id="favorites-container" style="display:none;"></div> <!-- Favorites -->
+        </section>
     </main>
 
     <footer>
@@ -47,6 +61,14 @@
     <script async src="https://cse.google.com/cse.js?cx=83ff675818bed4c9e"></script>
     <script src="routes/weatherApi.js"></script>
     <script src="routes/calendarApi.js"></script>
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const navMenu = document.getElementById("nav-menu");
+
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+    </script>
 
 </body>
 
