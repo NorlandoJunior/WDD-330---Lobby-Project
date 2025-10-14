@@ -34,7 +34,7 @@ app.get("/news", async (req, res) => {
   }
 });
 
-// --- Weather API route (3-hour forecast) ---
+// Weather API route (3-hour forecast)
 app.get("/weather", async (req, res) => {
   const { lat, lon } = req.query;
 
@@ -52,6 +52,7 @@ app.get("/weather", async (req, res) => {
     res.status(500).json({ error: "Error fetching weather" });
   }
 });
+
 
 // --- Calendarific API route ---
 app.get("/calendar", async (req, res) => {
