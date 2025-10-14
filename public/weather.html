@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather | Lobby</title>
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/styles-mobile.css">
+  <!-- Inter for text-->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Oswald fot heads -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
-    <h1>Weather Forecast</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="weather.html" class="active">Weather</a>
-      <a href="news.html">News</a>
+    <div>News</div>
+
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">☰</button>
+
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="weather.html" class="active">Weather</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -46,4 +57,5 @@
 
   <script src="routes/weatherApi.js"></script>
 </body>
+
 </html>

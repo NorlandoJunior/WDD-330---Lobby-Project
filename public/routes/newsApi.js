@@ -4,6 +4,9 @@ if (newsContainer) {
   const showFavoritesBtn = document.getElementById("show-favorites");
   const favoritesContainer = document.getElementById("favorites-container");
 
+  newsContainer.classList.add("news-container");
+  if (favoritesContainer) favoritesContainer.classList.add("news-container");
+
   // Load News 
   async function loadNews(topic = "all") {
     try {

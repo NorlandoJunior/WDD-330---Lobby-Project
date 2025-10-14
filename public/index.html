@@ -7,11 +7,15 @@
     <title>Home page Lobby</title>
     <link rel="stylesheet" href="styles/styles-mobile.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <!-- Inter for text-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Oswald fot heads -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div>Logo</div>
+        <div>Welcome to Lobby</div>
 
         <!--hamburguer button -->
         <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
@@ -20,7 +24,7 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="news.html">News</a></li>
                 <li><a href="weather.html">Weather</a></li>
             </ul>
@@ -28,15 +32,16 @@
     </header>
 
     <main>
-        <!-- Weathear -->
-        <div id="weather-container"></div>
+        <div id="top-container">
+            <!-- Weather -->
+            <div id="weather-container"></div>
 
-        <section id="calendar-section">
-            <h2>Calendar</h2>
-            <div id="calendar-container">
-                <!-- Holidays/datas Apis will incert -->
-            </div>
-        </section>
+            <!-- Calendar -->
+            <section id="calendar-section">
+                <h2>Calendar</h2>
+                <div id="calendar-container"></div>
+            </section>
+        </div>
 
         <!-- Google search bar -->
         <div class="gcse-search"></div>

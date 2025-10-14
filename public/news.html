@@ -7,11 +7,15 @@
     <title>News | Lobby</title>
     <link rel="stylesheet" href="styles/styles-mobile.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <!-- Inter for text-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Oswald fot heads -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div>Logo</div>
+        <div>News</div>
 
         <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">☰</button>
 
@@ -25,30 +29,30 @@
     </header>
 
     <main>
-    <section id="news-section" class="container">
-        <h2>Latest News</h2>
+        <section id="news-section" class="container">
+            <h2>Latest News</h2>
 
-        <!-- Filter Buttons -->
-<div id="filter-bar">
-  <button class="filter-btn active" data-topic="all">All</button>
-  <button class="filter-btn" data-topic="economy">Economy</button>
-  <button class="filter-btn" data-topic="politics">Politics</button>
-  <button class="filter-btn" data-topic="sports">Sports</button>
-  <button class="filter-btn" data-topic="technology">Technology</button>
-</div>
+            <!-- Filter Buttons -->
+            <div id="filter-bar">
+                <button class="filter-btn active" data-topic="all">All</button>
+                <button class="filter-btn" data-topic="economy">Economy</button>
+                <button class="filter-btn" data-topic="politics">Politics</button>
+                <button class="filter-btn" data-topic="sports">Sports</button>
+                <button class="filter-btn" data-topic="technology">Technology</button>
+            </div>
 
-<!-- Favorites Button -->
-<div id="favorites-bar">
-  <button id="show-favorites" class="favorite-view-btn">❤️ Favorites</button>
-</div>
+            <!-- Favorites Button -->
+            <div id="favorites-bar">
+                <button id="show-favorites" class="favorite-view-btn">❤️ Favorites</button>
+            </div>
 
-<!-- News Container -->
-<div id="news-container" class="grid"></div>
+            <!-- News Container -->
+            <div id="news-container" class="grid"></div>
 
-<!-- Favorites Container (starts hidden) -->
-<div id="favorites-container" class="grid" style="display: none;"></div>
-    </section>
-</main>
+            <!-- Favorites Container (starts hidden) -->
+            <div id="favorites-container" class="grid" style="display: none;"></div>
+        </section>
+    </main>
 
     <footer>
         <p>Lobby News © 2025</p>
