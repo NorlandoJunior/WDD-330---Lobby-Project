@@ -6,16 +6,13 @@
 
 /* VARIABLES  */
 :root {
-  --color-primary: #1e88e5;
-  --color-secondary: #1565c0;
-  --color-bg: #f4f7fa;
+  --color-primary: #0b4c85;
+  --color-secondary: #0b4c85;
+  --color-bg: #dbdbdbe0;
   --color-light: #ffffff;
   --color-text: #1a1a1a;
-
-  /* fontes atualizadas */
-  --font-main: 'Inter', sans-serif;       /* corpo */
-  --font-heading: 'Oswald', sans-serif;   /* títulos */
-
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Oswald', sans-serif;  
   --transition: all 0.3s ease;
 }
 
@@ -195,7 +192,7 @@ footer {
 }
 
 .forecast-card {
-  background: #e0e0e0;
+  background:  #1f6eb3e6;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
